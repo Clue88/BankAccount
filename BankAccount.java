@@ -13,12 +13,12 @@ public class BankAccount {
         return balance;
     }
 
-    public int getID() {
+    public int getAccountID() {
         return accountID;
     }
 
-    public void setPassword(String pass) {
-        password = pass;
+    public void setPassword(String newPass) {
+        password = newPass;
     }
 
     public boolean deposit(double amount) {
