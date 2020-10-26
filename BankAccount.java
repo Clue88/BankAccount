@@ -9,6 +9,10 @@ public class BankAccount {
         password = pass;
     }
 
+    public String toString() {
+        return accountID + "\t" + balance;
+    }
+
     public double getBalance() {
         return balance;
     }
