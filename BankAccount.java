@@ -8,4 +8,16 @@ public class BankAccount {
         accountID = id;
         password = pass;
     }
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public int getID() {
+        return accountID;
+    }
+
+    public void setPassword(String pass) {
+        password = pass;
+    }
 }
