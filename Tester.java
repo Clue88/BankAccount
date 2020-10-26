@@ -22,7 +22,6 @@ public class Tester {
             allGood = false;
             System.out.println("Failure on x.setPassword: Crashed.");
         }
-        
 
         if (allGood) System.out.println("All good!");
     }
