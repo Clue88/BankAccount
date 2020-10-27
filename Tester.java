@@ -26,32 +26,8 @@ public class Tester {
         if (allGood) System.out.println("All good!");
     }
 
-    public static boolean check(String name, String actual, String expected) {
+    public static boolean check(String name, Object actual, Object expected) {
         if (actual.equals(expected)) return true;
-        else {
-            System.out.println("Failure on " + name + ": Expected \"" + expected + "\", got \"" + actual + "\".");
-            return false;
-        }
-    }
-
-    public static boolean check(String name, double actual, double expected) {
-        if (actual == expected) return true;
-        else {
-            System.out.println("Failure on " + name + ": Expected \"" + expected + "\", got \"" + actual + "\".");
-            return false;
-        }
-    }
-
-    public static boolean check(String name, int actual, int expected) {
-        if (actual == expected) return true;
-        else {
-            System.out.println("Failure on " + name + ": Expected \"" + expected + "\", got \"" + actual + "\".");
-            return false;
-        }
-    }
-
-    public static boolean check(String name, boolean actual, boolean expected) {
-        if (actual == expected) return true;
         else {
             System.out.println("Failure on " + name + ": Expected \"" + expected + "\", got \"" + actual + "\".");
             return false;
