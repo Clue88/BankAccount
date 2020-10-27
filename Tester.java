@@ -1,36 +1,39 @@
 public class Tester {
     public static void main(String[] args) {
-        boolean allGood = true;
+        int err = 0;
         BankAccount x = new BankAccount(123456, "test123");
 
-        allGood = check("x.toString()", x.toString(), "123456\t0.0");
-        allGood = check("x.deposit(12)", x.deposit(12), true);
-        allGood = check("x.getBalance()", x.getBalance(), 12.0);
-        allGood = check("x.toString()", x.toString(), "123456\t12.0");
-        allGood = check("x.getAccountID", x.getAccountID(), 123456);
-        allGood = check("x.deposit(-12)", x.deposit(-12), false);
-        allGood = check("x.withdraw(5)", x.withdraw(5), true);
-        allGood = check("x.withdraw(-2)", x.withdraw(-2), false);
-        allGood = check("x.withhdraw(100)", x.withdraw(100), false);
-        allGood = check("x.getBalance()", x.getBalance(), 7.0);
+        err += check("x.toString()", x.toString(), "123456\t0.0");
+        err += check("x.deposit(12)", x.deposit(12), true);
+        err += check("x.getBalance()", x.getBalance(), 12.0);
+        err += check("x.toString()", x.toString(), "123456\t12.0");
+        err += check("x.getAccountID", x.getAccountID(), 123456);
+        err += check("x.deposit(-12)", x.deposit(-12), false);
+        err += check("x.withdraw(5)", x.withdraw(5), true);
+        err += check("x.withdraw(-2)", x.withdraw(-2), false);
+        err += check("x.withhdraw(100)", x.withdraw(100), false);
+        err += check("x.getBalance()", x.getBalance(), 7.0);
         
         // There's no way to check the password, so I'll use a try/catch to
         // see if it fails somehow.
         try {
             x.setPassword("new!");
         } catch (Exception e) {
-            allGood = false;
+            err += 1;
             System.out.println("Failure on x.setPassword: Crashed.");
         }
 
-        if (allGood) System.out.println("All good!");
+        if (err == 0) System.out.println("All good!");
+        else if (err == 1) System.out.println("Uh oh... 1 error found.");
+        else System.out.println("Uh oh... " + err + " errors found.");
     }
 
-    public static boolean check(String name, Object actual, Object expected) {
-        if (actual.equals(expected)) return true;
+    public static int check(String name, Object actual, Object expected) {
+        if (actual.equals(expected)) return 0;
         else {
-            System.out.println("Failure on " + name + ": Expected \"" + expected + "\", got \"" + actual + "\".");
-            return false;
+            System.out.println("Failure on " + name + ": Expected \"" +
+                                expected + "\", got \"" + actual + "\".");
+            return 1;
         }
     }
 }
