@@ -2,17 +2,21 @@ public class Tester {
     public static void main(String[] args) {
         int err = 0;
         BankAccount x = new BankAccount(123456, "test123");
+        BankAccount y = new BankAccount(69, "hello");
 
-        err += check("x.toString()", x.toString(), "123456\t0.0");
+        err += check("x.toString()", x.toString(), "#123456\t$0.0");
         err += check("x.deposit(12)", x.deposit(12), true);
         err += check("x.getBalance()", x.getBalance(), 12.0);
-        err += check("x.toString()", x.toString(), "123456\t12.0");
+        err += check("x.toString()", x.toString(), "#123456\t$12.0");
         err += check("x.getAccountID", x.getAccountID(), 123456);
         err += check("x.deposit(-12)", x.deposit(-12), false);
         err += check("x.withdraw(5)", x.withdraw(5), true);
         err += check("x.withdraw(-2)", x.withdraw(-2), false);
         err += check("x.withhdraw(100)", x.withdraw(100), false);
         err += check("x.getBalance()", x.getBalance(), 7.0);
+        err += check("x.transferTo(y, 1, \"test123\"", x.transferTo(y, 1, "test123"), true);
+        err += check("y.getBalance()", y.getBalance(), 1.0);
+        err += check("x.getBalance()", x.getBalance(), 6.0);
         
         // There's no way to check the password, so I'll use a try/catch to
         // see if it fails somehow.
