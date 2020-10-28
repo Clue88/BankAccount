@@ -15,8 +15,11 @@ public class Tester {
         err += check("x.withhdraw(100)", x.withdraw(100), false);
         err += check("x.getBalance()", x.getBalance(), 7.0);
         err += check("x.transferTo(y, 1, \"test123\"", x.transferTo(y, 1, "test123"), true);
-        err += check("y.getBalance()", y.getBalance(), 1.0);
         err += check("x.getBalance()", x.getBalance(), 6.0);
+        err += check("y.getBalance()", y.getBalance(), 1.0);
+        err += check("y.transferTo(x, 2, \"hello\"", x.transferTo(x, 2, "hello"), false);
+        err += check("x.getBalance()", x.getBalance(), 6.0);
+        err += check("y.getBalance()", y.getBalance(), 1.0);
         
         // There's no way to check the password, so I'll use a try/catch to
         // see if it fails somehow.

@@ -45,10 +45,11 @@ public class BankAccount {
     }
 
     public boolean transferTo(BankAccount other, double amount, String password) {
-        if (!authenticate(password)) return false;
-        if (withdraw(amount)) {
-            if (other.deposit(amount)) {
-                return true;
+        if (authenticate(password) && withdraw(amount)) {
+            if (other.deposit(amount)) return true;
+            else {
+                // This should never happen.
+                System.out.println("CRITICAL ERROR in transferTo()");
             }
         }
         return false;
